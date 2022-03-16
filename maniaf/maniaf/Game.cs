@@ -8,7 +8,6 @@ using OpenTK.Windowing.Common;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Mathematics;
 using SixLabors.ImageSharp.PixelFormats;
-using Image = SixLabors.ImageSharp.Image;
 using SixLabors.ImageSharp;
 using System.Runtime.InteropServices;
 
@@ -20,10 +19,12 @@ namespace maniaf
             : base(GameWindowSettings.Default, NativeWindowSettings.Default)
         {
             this.Title = "ManiaF";
-            Image<Rgba32> image = (Image<Rgba32>)Image.Load(Configuration.Default, "../../../assets/maniaf225.png");
+            this.WindowBorder = WindowBorder.Hidden;
+            Image<Rgba32> image = (Image<Rgba32>)Image.Load(Configuration.Default, "../../../assets/maniaf.png");
             image.TryGetSinglePixelSpan(out var span);
             byte[] pixels = MemoryMarshal.AsBytes(span).ToArray();
-            this.Icon = new OpenTK.Windowing.Common.Input.WindowIcon(new OpenTK.Windowing.Common.Input.Image(225, 225, pixels));
+            this.Icon = new OpenTK.Windowing.Common.Input.WindowIcon(new OpenTK.Windowing.Common.Input.Image(3000, 3000, pixels));
+            // this.WindowState = WindowState.Fullscreen;
             this.CenterWindow(new Vector2i(1600, 900));
         }
 
