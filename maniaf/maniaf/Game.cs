@@ -19,11 +19,12 @@ namespace maniaf
         public maniafgame()
             : base(GameWindowSettings.Default, NativeWindowSettings.Default)
         {
-            this.CenterWindow(new Vector2i(1600, 900));
+            this.Title = "ManiaF";
             Image<Rgba32> image = (Image<Rgba32>)Image.Load(Configuration.Default, "../../../assets/maniaf225.png");
             image.TryGetSinglePixelSpan(out var span);
             byte[] pixels = MemoryMarshal.AsBytes(span).ToArray();
             this.Icon = new OpenTK.Windowing.Common.Input.WindowIcon(new OpenTK.Windowing.Common.Input.Image(225, 225, pixels));
+            this.CenterWindow(new Vector2i(1600, 900));
         }
 
         protected override void OnUpdateFrame(FrameEventArgs args)
