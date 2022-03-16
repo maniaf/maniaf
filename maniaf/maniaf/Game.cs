@@ -34,7 +34,7 @@ namespace maniaf
 
         protected override void OnRenderFrame(FrameEventArgs args)
         {
-            GL.ClearColor(new Color4(0f, 0f, 0f, 1f));
+            GL.ClearColor(new Color4(0.1f, 0.1f, 0.1f, 1f));
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
             this.Context.SwapBuffers();
