@@ -1,5 +1,4 @@
-﻿using NAudio;
-using NAudio.Wave;
+﻿using NAudio.Wave;
 
 namespace maniaf
 {
@@ -14,6 +13,10 @@ namespace maniaf
                 {
                     outputDevice.Init(audioFile);
                     outputDevice.Play();
+                    while (outputDevice.PlaybackState == PlaybackState.Playing)
+                    {
+                        Thread.Sleep(1);
+                    }
                 }
             });
         }

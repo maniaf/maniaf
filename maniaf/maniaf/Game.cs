@@ -10,12 +10,14 @@ using OpenTK.Mathematics;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp;
 using System.Runtime.InteropServices;
+using maniaf.scene;
 
 namespace maniaf
 {
     internal class maniafgame : GameWindow
     {
-        LocalAudioPlayer LAP = new LocalAudioPlayer();
+        private readonly LocalAudioPlayer LAP = new();
+        private readonly maniafopening ManiaFOpening = new();
         public maniafgame()
             : base(GameWindowSettings.Default, NativeWindowSettings.Default)
         {
@@ -50,9 +52,7 @@ namespace maniaf
 
         protected override void OnRenderFrame(FrameEventArgs args)
         {
-            GL.ClearColor(new Color4(0.1f, 0.1f, 0.1f, 1f));
-            GL.Clear(ClearBufferMask.ColorBufferBit);
-
+            ManiaFOpening.Start();
             this.Context.SwapBuffers();
             base.OnRenderFrame(args);
         }
