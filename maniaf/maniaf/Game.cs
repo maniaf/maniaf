@@ -27,6 +27,20 @@ namespace maniaf
             // this.WindowState = WindowState.Fullscreen;
             this.CenterWindow(new Vector2i(1600, 900));
         }
+        protected override void OnResize(ResizeEventArgs e)
+        {
+            Console.WriteLine($"{e.Width}/{e.Height}");
+            GL.Viewport(0,0,e.Width,e.Height);
+            base.OnResize(e);
+        }
+        protected override void OnLoad()
+        {
+            base.OnLoad();
+        }
+        protected override void OnUnload()
+        {
+            base.OnUnload();
+        }
 
         protected override void OnUpdateFrame(FrameEventArgs args)
         {
