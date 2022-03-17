@@ -15,12 +15,12 @@ namespace maniaf
 {
     internal class maniafgame : GameWindow
     {
+        LocalAudioPlayer LAP = new LocalAudioPlayer();
         public maniafgame()
             : base(GameWindowSettings.Default, NativeWindowSettings.Default)
         {
             this.Title = "ManiaF";
-            this.WindowBorder = WindowBorder.Hidden;
-            Image<Rgba32> image = (Image<Rgba32>)Image.Load(Configuration.Default, "../../../assets/maniaf.png");
+            Image<Rgba32> image = (Image<Rgba32>)Image.Load(Configuration.Default, "./assets/maniaf.png");
             image.TryGetSinglePixelSpan(out var span);
             byte[] pixels = MemoryMarshal.AsBytes(span).ToArray();
             this.Icon = new OpenTK.Windowing.Common.Input.WindowIcon(new OpenTK.Windowing.Common.Input.Image(3000, 3000, pixels));
@@ -36,6 +36,7 @@ namespace maniaf
         protected override void OnLoad()
         {
             base.OnLoad();
+            _ = Task.Run(() => LocalAudioPlayer.Play("start_fx_sound.wav"));
         }
         protected override void OnUnload()
         {
